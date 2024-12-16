@@ -1,20 +1,21 @@
-import math
-
+# TIMES PANEL FITS IN CASE BEFORE AND AFTER ROTATION
 def get_fits(x,y,a,b):
-    
     return(max(times_panel_fits(x,y,a,b), times_panel_fits(x,y,b,a,True)))
 
 
 def times_panel_fits(roofX, roofY, panelX, panelY, rotate_panel=False):
+    # TIMES PANEL FITS WITHOUT ROTATION
     vertical_fit = roofY // panelY
     horizontal_fit = roofX // panelX
     first_fit = vertical_fit * horizontal_fit
 
+    # CALCULATE REMAINING SPACE
     if not rotate_panel:
         rem = roofX % panelX
     else:
         rem = roofY % panelY
 
+    # TIMES PANEL FITS IN REMAINING SPACE
     rotated_horizontal_fit = rem // panelY
     rotated_vertical_fit = roofY // panelX
     second_fit = rotated_horizontal_fit * rotated_vertical_fit
